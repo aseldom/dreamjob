@@ -6,15 +6,15 @@ import java.util.Objects;
 public class Candidate {
     private int id;
 
-    private String title;
+    private String name;
 
     private String description;
 
     private LocalDateTime creationDate = LocalDateTime.now();
 
-    public Candidate(int id, String title) {
+    public Candidate(int id, String name) {
         this.id = id;
-        this.title = title;
+        this.name = name;
     }
 
     public int getId() {
@@ -25,12 +25,12 @@ public class Candidate {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
