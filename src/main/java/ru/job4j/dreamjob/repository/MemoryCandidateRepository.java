@@ -5,6 +5,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,9 +22,9 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final ConcurrentMap<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private MemoryCandidateRepository() {
-        save(new Candidate(0, "Experienced Java Developer"));
-        save(new Candidate(0, "Middle+ Java Developer"));
-        save(new Candidate(0, "Senior Java Developer"));
+        save(new Candidate(0, "Experienced Java Developer", "", LocalDateTime.now(), 0, 0));
+        save(new Candidate(0, "Middle+ Java Developer", "", LocalDateTime.now(), 0, 0));
+        save(new Candidate(0, "Senior Java Developer", "", LocalDateTime.now(), 0, 0));
     }
 
     @Override
@@ -46,7 +47,9 @@ public class MemoryCandidateRepository implements CandidateRepository {
                         candidate.getName(),
                         candidate.getDescription(),
                         candidate.getCreationDate(),
-                        candidate.getCityId())
+                        candidate.getCityId(),
+                        candidate.getFileId()
+                )
         ) != null;
     }
 
