@@ -8,6 +8,7 @@ import ru.job4j.dreamjob.model.Vacancy;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
@@ -17,7 +18,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @GuardedBy("this")
     private final AtomicInteger atomicInt = new AtomicInteger(1);
 
-    private final ConcurrentHashMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     private MemoryVacancyRepository() {
         save(new Vacancy(0, "Intern Java Developer"));
@@ -43,7 +44,10 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @Override
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy) -> {
-            return new Vacancy(oldVacancy.getId(), vacancy.getTitle(), vacancy.getDescription(), vacancy.getCreationDate(), vacancy.getVisible());
+            return new Vacancy(
+                    oldVacancy.getId(), vacancy.getTitle(), vacancy.getDescription(),
+                    vacancy.getCreationDate(), vacancy.getVisible(), vacancy.getCityId()
+            );
         }) != null;
     }
 
