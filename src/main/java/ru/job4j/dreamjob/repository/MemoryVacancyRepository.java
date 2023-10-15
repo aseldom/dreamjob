@@ -7,9 +7,9 @@ import ru.job4j.dreamjob.model.Vacancy;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
@@ -19,7 +19,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @GuardedBy("this")
     private final AtomicInteger atomicInt = new AtomicInteger(1);
 
-    private final ConcurrentMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
+    private final Map<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     public MemoryVacancyRepository() {
         save(new Vacancy(0, "Intern Java Developer", "Стажер Java разработчик", LocalDateTime.now(), true, 1, 0));
