@@ -35,8 +35,8 @@ public class MemoryCandidateRepository implements CandidateRepository {
     }
 
     @Override
-    public boolean deleteById(int id) {
-        return candidates.remove(id, candidates.get(id));
+    public void deleteById(int id) {
+        candidates.remove(id, candidates.get(id));
     }
 
     @Override
