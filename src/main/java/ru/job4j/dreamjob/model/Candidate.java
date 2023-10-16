@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Candidate {
+
     private int id;
 
     private String name;
