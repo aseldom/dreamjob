@@ -28,14 +28,12 @@ public class CandidateController {
 
     @GetMapping
     public String getAll(Model model, HttpSession session) {
-        IndexController.addUser(model, session);
         model.addAttribute("candidates", candidateService.findAll());
         return "candidates/list";
     }
 
     @GetMapping("/create")
     public String getCreationPage(Model model, HttpSession session) {
-        IndexController.addUser(model, session);
         model.addAttribute("cities", cityService.findAll());
         return "candidates/create";
     }
@@ -53,7 +51,6 @@ public class CandidateController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id, HttpSession session) {
-        IndexController.addUser(model, session);
         var candidateOptional = candidateService.findById(id);
         if (candidateOptional.isEmpty()) {
             model.addAttribute("message", "Кандидат с указанным идентификатором не найден");
@@ -81,7 +78,6 @@ public class CandidateController {
 
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable int id, HttpSession session) {
-        IndexController.addUser(model, session);
         candidateService.deleteById(id);
         return "redirect:/candidates";
     }
