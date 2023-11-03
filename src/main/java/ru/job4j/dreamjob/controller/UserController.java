@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistationPage() {
+    public String getRegistrationPage() {
         return "users/register";
     }
 

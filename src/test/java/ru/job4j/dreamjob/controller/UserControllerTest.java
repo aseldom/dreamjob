@@ -30,7 +30,7 @@ class UserControllerTest {
 
     @Test
     public void whenRequestRegistrationPageThenGetPage() {
-        var actualPage = userController.getRegistationPage();
+        var actualPage = userController.getRegistrationPage();
         var expectedPage = "users/register";
 
         assertThat(actualPage).isEqualTo(expectedPage);

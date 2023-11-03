@@ -1,4 +1,4 @@
-# job4j_dreamjob
+# job4j_cinema_web
 
 ## О проекте
 
